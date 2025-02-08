@@ -3,41 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Marisita, quieres ser mi San Valentín?</title>
+    <title>¿Quieres ser mi San Valentín?</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
+
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #ffe6e6;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             flex-direction: column;
             text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
+
         h1 {
             color: #ff4d4d;
-            font-size: 30px;
+            font-size: 32px;
+            font-family: 'Pacifico', cursive;
         }
+
         .buttons {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 18px;
             border: none;
             cursor: pointer;
-            margin: 10px;
             border-radius: 10px;
             transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
         }
+
         .yes {
-            background-color: #ff4d4d;
+            background-color: #ff1d1d;
+            color: white;
+            font-weight: bold;
+        }
+
+        .no {
+            background-color: #b5ff18
             color: white;
         }
-        .no {
-            background-color: #666;
-            color: white;
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 26px;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 77, 77, 0.7);
+            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 50% 75%, 20% 100%, 0% 30%);
+            animation: float 5s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -45,7 +95,7 @@
     <h1>¿Marisita, quieres ser mi San Valentín? ❤️</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptValentine()">Sí</button>
-        <button class="no" onclick="changeMessage()">¿No?</button>
+        <button class="no" onclick="changeMessage()">No</button>
     </div>
 
     <script>
@@ -59,9 +109,9 @@
         ];
         let index = 0;
         let yesButton = document.querySelector('.yes');
+        let noButton = document.querySelector('.no');
         
         function changeMessage() {
-            let noButton = document.querySelector('.no');
             if (index < messages.length) {
                 noButton.innerText = messages[index];
                 index++;
@@ -73,11 +123,20 @@
         }
         
         function acceptValentine() {
-            let fecha = new Date();
-            let opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-            let fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
-            document.body.innerHTML = `<h1>¡Siii! Sabía que dirías que SÍ! 💖🥰</h1><p>Nos vemos el ${fechaFormateada}</p>`;
+            document.body.innerHTML = `<h1>¡Siii! Sabía que dirías que SÍ! 💖🥰</h1><p>Nos vemos el sábado 15 a las 7 PM</p>`;
         }
+        
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                document.body.appendChild(heart);
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                heart.style.animationDelay = Math.random() * 2 + "s";
+            }
+        }
+        createHearts();
     </script>
 </body>
 </html>
