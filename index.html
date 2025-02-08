@@ -6,7 +6,7 @@
     <title>¿Quieres ser mi San Valentín?</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
-        
+
         body {
             display: flex;
             justify-content: center;
@@ -46,13 +46,13 @@
         }
 
         .yes {
-            background-color: #ff1d1d;
+            background-color: #ff4d4d;
             color: white;
             font-weight: bold;
         }
 
         .no {
-            background-color: #b5ff18
+            background-color: #666;
             color: white;
         }
 
@@ -89,10 +89,42 @@
                 opacity: 0;
             }
         }
+
+        .date {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ff4d4d;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .tulip {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            opacity: 0.8;
+            animation: grow 3s infinite alternate;
+        }
+
+        @keyframes grow {
+            from {
+                transform: translateX(-50%) scale(1);
+            }
+            to {
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>¿Marisita, quieres ser mi San Valentín? ❤️</h1>
+    <h1>¿Quieres ser mi San Valentín? ❤️</h1>
     <div class="buttons">
         <button class="yes" onclick="acceptValentine()">Sí</button>
         <button class="no" onclick="changeMessage()">No</button>
@@ -123,7 +155,13 @@
         }
         
         function acceptValentine() {
-            document.body.innerHTML = `<h1>¡Siii! Sabía que dirías que SÍ! 💖🥰</h1><p>Nos vemos el sábado 15 a las 7 PM</p>`;
+            document.body.innerHTML = `
+                <h1>¡Siii! Sabía que dirías que SÍ! 💖🥰</h1>
+                <p class="date">Nos vemos el sábado 15 de febrero a las 7 PM</p>
+                <p class="message">Lugar por confirmar</p>
+                <p class="message">Ponte guapa mi amorcito 💕</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tulip_-_floriade_canberra.jpg" class="tulip" />
+            `;
         }
         
         function createHearts() {
