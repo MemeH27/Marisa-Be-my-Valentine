@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            color: #ff4d4d;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .no {
+            background-color: #666;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+    <div class="buttons">
+        <button class="yes" onclick="acceptValentine()">Sí</button>
+        <button class="no" onclick="moveButton()">No</button>
+    </div>
+
+    <script>
+        let messages = [
+            "¿Estás segura? 😢", 
+            "Piénsalo otra vez... 🥺", 
+            "Por favorcitooo? 🥰", 
+            "Vamos, no rompas mi corazón 💔", 
+            "Me estás poniendo triste 😭", 
+            "¡Di que SÍ! 😘"
+        ];
+        let index = 0;
+        
+        function moveButton() {
+            let noButton = document.querySelector('.no');
+            let randomX = Math.random() * (window.innerWidth - 200);
+            let randomY = Math.random() * (window.innerHeight - 200);
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            
+            if (index < messages.length) {
+                noButton.innerText = messages[index];
+                index++;
+            } else {
+                noButton.innerText = "¡No puedes escapar! 😈";
+            }
+        }
+        
+        function acceptValentine() {
+            let fecha = new Date();
+            let opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            let fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
+            document.body.innerHTML = `<h1>¡Siii! Sabía que dirías que SÍ! 💖🥰</h1><p>Nos vemos el ${fechaFormateada}</p>`;
+        }
+    </script>
+</body>
+</html>
